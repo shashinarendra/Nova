@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova — AI Chat Assistant</title>
+  <meta name="description" content="Nova is a brilliant and friendly AI assistant powered by Google Gemini. Have multi-turn conversations with persistent context." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="url(#logoGrad)" stroke-width="2.5"/>
+              <path d="M10 16 C10 12, 14 9, 16 9 C18 9, 22 12, 22 16 C22 20, 18 23, 16 23 C14 23, 10 20, 10 16Z" fill="url(#logoGrad)" opacity="0.3"/>
+              <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
+              <defs>
+                <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#6366f1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="logo-text">Nova</span>
+        </div>
+        <button id="new-chat-btn" class="btn-new-chat" title="New Chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+      <div class="sidebar-conversations" id="conversation-list">
+        <!-- Conversations populated by JS -->
+      </div>
+      <div class="sidebar-footer">
+        <div class="context-indicator" id="context-indicator">
+          <div class="context-dot"></div>
+          <span>Context: <strong id="context-count">0</strong> msgs</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main">
+      <!-- Header -->
+      <header class="chat-header">
+        <button id="sidebar-toggle" class="sidebar-toggle" title="Toggle sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="header-info">
+          <h1>Nova</h1>
+          <span class="header-subtitle" id="header-subtitle">Powered by Gemini 3.5 Flash</span>
+        </div>
+        <div class="header-actions">
+          <button id="clear-chat-btn" class="btn-icon" title="Clear chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Messages -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Welcome screen -->
+        <div class="welcome-screen" id="welcome-screen">
+          <div class="welcome-orb">
+            <div class="orb-ring ring-1"></div>
+            <div class="orb-ring ring-2"></div>
+            <div class="orb-ring ring-3"></div>
+            <div class="orb-core"></div>
+          </div>
+          <h2>Hello, I'm <span class="gradient-text">Nova</span></h2>
+          <p>Your AI companion powered by Google Gemini. I remember our whole conversation, so feel free to build on previous topics.</p>
+          <div class="suggestion-chips">
+            <button class="chip" data-msg="Tell me something fascinating about the universe">🌌 Tell me something fascinating</button>
+            <button class="chip" data-msg="Help me brainstorm a creative project idea">💡 Brainstorm a project idea</button>
+            <button class="chip" data-msg="Explain quantum computing like I'm 10 years old">🧪 Explain quantum computing</button>
+            <button class="chip" data-msg="Write me a short poem about coding at midnight">✍️ Write a poem about coding</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-wrapper">
+        <div class="chat-input-container" id="input-container">
+          <textarea
+            id="message-input"
+            placeholder="Message Nova..."
+            rows="1"
+            maxlength="10000"
+          ></textarea>
+          <button id="send-btn" class="btn-send" title="Send message" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <p class="input-footer">Nova can make mistakes. Verify important information.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
