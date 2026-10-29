@@ -269,7 +269,7 @@
       headerSubtitle.textContent = "Thinking…";
       headerSubtitle.style.color = "var(--accent-primary)";
     } else {
-      headerSubtitle.textContent = "Powered by Gemini 3.8 Flash";
+      headerSubtitle.textContent = "Powered by Gemini 2.0 Flash";
       headerSubtitle.style.color = "";
     }
   }
@@ -398,7 +398,7 @@
       updateContextCount(data.historyLength);
 
       if (data.summaryCount > 0) {
-        headerSubtitle.textContent = `Powered by Gemini 3.8 Flash · ${data.summaryCount} context summary`;
+        headerSubtitle.textContent = `Powered by Gemini 2.0 Flash · ${data.summaryCount} context summary`;
       }
     } catch (err) {
       removeTypingIndicator();
@@ -414,7 +414,7 @@
     state.currentConversationId = null;
     chatMessages.innerHTML = "";
     updateContextCount(0);
-    headerSubtitle.textContent = "Powered by Gemini 3.8 Flash";
+    headerSubtitle.textContent = "Powered by Gemini 2.0 Flash";
     headerSubtitle.style.color = "";
 
     // Re-show welcome screen

@@ -41,7 +41,7 @@ You are having a multi-turn conversation. Pay attention to context from earlier 
 // ─── Gemini client ────────────────────────────────────────────────────────────
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({
-  model: "gemini-3.5-flash",
+  model: "gemini-2.0-flash",
   systemInstruction: {
     role: "user",
     parts: [{ text: SYSTEM_PROMPT }],
@@ -132,7 +132,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Health check
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", model: "gemini-3.5-flash" });
+  res.json({ status: "ok", model: "gemini-2.0-flash" });
 });
 
 // Create new conversation
@@ -244,6 +244,6 @@ app.delete("/api/conversations/:id", (req, res) => {
 // ─── Start server ─────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`\n🚀 Nova Chatbot running at http://localhost:${PORT}`);
-  console.log(`   Model: gemini-3.5-flash`);
+  console.log(`   Model: gemini-2.0-flash`);
   console.log(`   Context strategy: Summarize at ${SUMMARIZE_THRESHOLD} msgs, hard cap at ${MAX_HISTORY_MESSAGES}\n`);
 });
