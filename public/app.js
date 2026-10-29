@@ -133,7 +133,7 @@
 
       if (err instanceof TypeError && err.message.includes("fetch")) {
         throw new Error(
-          "Could not connect to the server. Make sure it's running on localhost:3000."
+          "Could not connect to the server. Please check your internet connection and try again."
         );
       }
 
@@ -498,7 +498,7 @@
       await apiCall("/api/health");
     } catch {
       showToast(
-        "Cannot connect to server. Make sure it's running (node server.js)."
+        "Cannot connect to the server. Please check your network or try refreshing the page."
       );
     }
   })();
